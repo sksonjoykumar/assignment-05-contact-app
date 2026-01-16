@@ -1,6 +1,6 @@
-import Table from "../contact-table/Table";
-import Filter from "../filter/Filter";
-import Header from "../header/Header";
+import Table from "../../components/contact-table/Table";
+import Filter from "../../components/filter/Filter";
+import Header from "../../components/header/Header";
 
 export default function Home() {
   return (
@@ -11,7 +11,6 @@ export default function Home() {
           <div className="p-5">
             <Filter />
             <Table />
-            
           </div>
         </div>
       </main>

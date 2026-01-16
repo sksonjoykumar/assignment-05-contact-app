@@ -1,6 +1,17 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+// API_URL
+const apiUrl = "http://localhost:5000/contacts";
 export default function NewContact() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+  console.log(process.env.JWT_SECRET);
   return (
     <>
       <main className="m-10 mx-auto max-w-312.5 px-4 md:px-20">
