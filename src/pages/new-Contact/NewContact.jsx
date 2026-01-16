@@ -1,17 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { UserContext } from "../../global-context/GlobalContext";
 
-// API_URL
-const apiUrl = "http://localhost:5000/contacts";
 export default function NewContact() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
-  console.log(process.env.JWT_SECRET);
+  const {
+    contacts,
+    formData,
+    handleChange,
+    editId,
+    handleSubmit,
+    setFormData,
+    setEditId,
+  } = useContext(UserContext);
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      const contact = contacts.find((c) => c.id === Number(id));
+      if (contact) {
+        setFormData(contact);
+        setEditId(id);
+      }
+    }
+  }, [id, contacts]);
+
   return (
     <>
       <main className="m-10 mx-auto max-w-312.5 px-4 md:px-20">
@@ -19,11 +32,11 @@ export default function NewContact() {
           <div className="w-3xl rounded-md border border-gray-400 shadow-sm">
             <div className="rounded-t-md bg-[#435d7d] p-5">
               <h1 className="text-xl font-semibold text-white">
-                Add New Contact
+                {editId ? "Update Contact" : "Add New Contact"}
               </h1>
             </div>
             <div className="rounded-b-md p-5">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div class="mb-5 flex items-center gap-3">
                   <label
                     htmlFor="firstName"
@@ -32,6 +45,9 @@ export default function NewContact() {
                     First Name
                   </label>
                   <input
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
                     type="text"
                     name="firstName"
                     className="focus:ring-none focus:ring-none w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200"
@@ -46,6 +62,9 @@ export default function NewContact() {
                     Last Name
                   </label>
                   <input
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
                     type="text"
                     name="lastName"
                     className="focus:ring-none focus:ring-none w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200"
@@ -60,10 +79,13 @@ export default function NewContact() {
                     Email
                   </label>
                   <input
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     type="email"
                     name="email"
                     className="focus:ring-none focus:ring-none w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200"
-                    placeholder="email"
+                    placeholder="Email"
                   />
                 </div>
                 <div class="mb-5 flex items-center gap-3">
@@ -74,10 +96,13 @@ export default function NewContact() {
                     Phone
                   </label>
                   <input
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
                     type="number"
                     name="phone"
                     className="focus:ring-none focus:ring-none w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200"
-                    placeholder="email"
+                    placeholder="Phone"
                   />
                 </div>
                 <div class="mb-5 flex items-center gap-3">
@@ -88,6 +113,9 @@ export default function NewContact() {
                     Address
                   </label>
                   <textarea
+                    value={formData.address}
+                    onChange={handleChange}
+                    required
                     name="address"
                     className="focus:ring-none focus:ring-none w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200"
                     placeholder="Address..."
@@ -95,10 +123,10 @@ export default function NewContact() {
                 </div>
                 <div className="flex justify-center gap-3 sm:ml-20 md:justify-start lg:ml-42.5">
                   <button
-                    type="button"
+                    type="submit"
                     className="focus:ring-brand-medium cursor-pointer rounded-md bg-blue-500 px-4 py-1.5 text-white transition-all duration-300 hover:bg-blue-600"
                   >
-                    Save
+                    {editId ? "Update" : "Save"}
                   </button>
                   <Link
                     to={"/"}

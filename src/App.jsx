@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import ContactDetails from "./pages/contact-details/ContactDetails";
 import Navbar from "./components/navbar/Navbar";
-import NewContact from "./pages/new-Contact/NewContact";
+import ContactDetails from "./pages/contact-details/ContactDetails";
 import Home from "./pages/home-page/Home";
+import NewContact from "./pages/new-Contact/NewContact";
 
 function App() {
   return (
@@ -12,20 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add-new" element={<NewContact />} />
-          <Route
-            path="/show"
-            element={
-              <ContactDetails
-                contact={{
-                  firstName: "Alfred",
-                  lastName: "Kuhlman",
-                  email: "alfred@test.com",
-                  phone: "98989898",
-                  address: "Lorem ipsum dolor",
-                }}
-              />
-            }
-          />
+          <Route path="/update/:id" element={<NewContact />} />
+          <Route path="/show/:id" element={<ContactDetails />} />
         </Routes>
       </main>
     </>

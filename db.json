@@ -1,3 +1,36 @@
 {
-  "contacts": []
+  "contacts": [
+    {
+      "id": "6d71",
+      "firstName": "Priya",
+      "lastName": "Sarkar",
+      "email": "priyasarkar2026@gmail.com",
+      "phone": "01750332334243",
+      "address": "Savar"
+    },
+    {
+      "id": "0134",
+      "firstName": "Angali",
+      "lastName": "Rani",
+      "email": "angalirani@gmail.com",
+      "phone": "12345674223",
+      "address": "Savar, Dhaka"
+    },
+    {
+      "id": "3369",
+      "firstName": "Joy",
+      "lastName": "Barman",
+      "email": "joybarman111@gmail.com",
+      "phone": "87654321112",
+      "address": "Rangpur"
+    },
+    {
+      "id": "092d",
+      "firstName": "Sohag",
+      "lastName": "Kumar",
+      "email": "sohagkumar@gmail.com",
+      "phone": "123456789098765",
+      "address": "Gaibandha"
+    }
+  ]
 }

@@ -1,13 +1,10 @@
 import { Eye, Pencil, X } from "lucide-react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { users } from "../../lib";
+import { UserContext } from "../../global-context/GlobalContext";
 
 const ContactTable = () => {
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure?")) {
-      console.log("Delete user:", id);
-    }
-  };
+  const { contacts, handleEdit, handleDelete } = useContext(UserContext);
 
   return (
     <div className="overflow-x-auto rounded-lg bg-white">
@@ -27,7 +24,7 @@ const ContactTable = () => {
 
           {/* Body */}
           <tbody>
-            {users.map((user, index) => (
+            {contacts.map((user, index) => (
               <tr
                 key={user.id}
                 className="border-b border-gray-200 text-sm odd:bg-gray-100 hover:bg-gray-100"
@@ -42,15 +39,16 @@ const ContactTable = () => {
                 <td className="px-4 py-2.5">
                   <div className="flex items-center gap-2">
                     <Link
-                      to={`/show`}
-                      title="Show"
+                      to={`/show/${user.id}`}
+                      onClick={() => handleEdit(user)}
                       className="flex h-8 w-8 items-center justify-center rounded-full border border-blue-500 text-blue-500 transition hover:bg-blue-500 hover:text-white"
                     >
                       <Eye size={16} />
                     </Link>
 
                     <Link
-                      to={"/add-new"}
+                      to={`/update/${user.id}`}
+                      onClick={() => handleEdit(user)}
                       title="Edit"
                       className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-500 text-gray-600 transition hover:bg-gray-600 hover:text-white"
                     >
