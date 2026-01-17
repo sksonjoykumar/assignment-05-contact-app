@@ -26,7 +26,6 @@ const ContactDetails = () => {
       }
     }
   }, [id, contacts]);
-  console.log(userData);
 
   return (
     <>

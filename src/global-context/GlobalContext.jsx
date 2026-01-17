@@ -11,6 +11,8 @@ const UserProvider = ({ children }) => {
   const [contacts, setContacts] = useState([]);
   const [editId, setEditId] = useState(null);
   const [userData, setUserData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("default");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -90,8 +92,18 @@ const UserProvider = ({ children }) => {
     navigate("/", { replace: true });
   };
 
-  console.log(contacts);
-  console.log(userData);
+  const filteredContacts = contacts
+    .filter((c) =>
+      `${c.firstName} ${c.lastName} ${c.email} ${c.phone}`
+        .toLowerCase()
+        .includes(search.toLowerCase()),
+    )
+    .sort((a, b) => {
+      if (filter === "firstName") return a.firstName.localeCompare(b.firstName);
+      if (filter === "lastName") return b.lastName.localeCompare(a.lastName);
+      if (filter === "oldestToFirst") return a.id - b.id;
+      return 0;
+    });
 
   // user
   const user = {
@@ -107,6 +119,11 @@ const UserProvider = ({ children }) => {
     handleDelete,
     userData,
     handleUserDetails,
+    search,
+    setSearch,
+    filter,
+    setFilter,
+    filteredContacts,
   };
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };
