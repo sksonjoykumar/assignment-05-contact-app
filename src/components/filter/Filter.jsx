@@ -3,7 +3,7 @@ import { UserContext } from "../../global-context/GlobalContext";
 
 export default function Filter() {
   const { filter, setFilter } = useContext(UserContext);
-  console.log(filter);
+
   return (
     <>
       <div className="flex justify-between gap-3">
