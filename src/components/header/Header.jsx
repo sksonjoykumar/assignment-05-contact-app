@@ -8,10 +8,12 @@ export default function Header() {
   return (
     <>
       <div className="rounded-t-md bg-[#435d7d] p-5">
-        <div className="flex justify-between gap-5">
-          <h1 className="text-3xl font-semibold text-white">All Contacts</h1>
+        <div className="flex flex-col justify-between gap-3 sm:flex-row lg:gap-5">
+          <h1 className="text-center text-3xl font-semibold text-white sm:text-left">
+            All Contacts
+          </h1>
           <div>
-            <div class="flex w-lg items-center">
+            <div class="flex items-center gap-0 lg:w-lg">
               <input
                 type="search"
                 id="search"
@@ -31,7 +33,7 @@ export default function Header() {
           </div>
           <Link
             to={"/add-new"}
-            className="focus:ring-brand-medium cursor-pointer rounded-md bg-[#28a745] px-3 py-2 text-white transition-all duration-300 hover:bg-[#288d40]"
+            className="focus:ring-brand-medium cursor-pointer rounded-md bg-[#28a745] px-3 py-2 text-center text-white transition-all duration-300 hover:bg-[#288d40]"
           >
             Add New
           </Link>

@@ -12,6 +12,7 @@ export default function NewContact() {
     handleSubmit,
     setFormData,
     setEditId,
+   
   } = useContext(UserContext);
   const { id } = useParams();
 
@@ -101,7 +102,7 @@ export default function NewContact() {
                     required
                     type="number"
                     name="phone"
-                    className="focus:ring-none focus:ring-none w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200"
+                    className="focus:ring-none focus:ring-none w-full [appearance:textfield] rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200 [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                     placeholder="Phone"
                   />
                 </div>
@@ -117,7 +118,7 @@ export default function NewContact() {
                     onChange={handleChange}
                     required
                     name="address"
-                    className="focus:ring-none focus:ring-none w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200"
+                    className="focus:ring-none focus:ring-none w-full rounded-md border border-gray-300 bg-white px-3 py-2.5 text-sm shadow-xs focus:border-2 focus:border-blue-200 focus:ring-2 focus:ring-blue-200 focus:outline-2 focus:outline-blue-200 resize-none"
                     placeholder="Address..."
                   />
                 </div>

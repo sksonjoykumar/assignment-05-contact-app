@@ -50,30 +50,35 @@ const UserProvider = ({ children }) => {
   // create and update
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // update
-    if (editId) {
-      await fetch(`${apiUrl}/${editId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+    try {
+      // update
+      if (editId) {
+        await fetch(`${apiUrl}/${editId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+      } else {
+        // create
+        await fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+      }
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
       });
-    } else {
-      // create
-      await fetch(apiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      setEditId(null);
+      navigate("/", { replace: true });
+      fetchContacts();
+    } catch (error) {
+      console.log("Submit error", error);
     }
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      address: "",
-    });
-    setEditId(null);
-    navigate("/", { replace: true });
   };
 
   // edit
