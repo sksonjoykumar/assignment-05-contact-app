@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const UserContext = createContext();
 
 // API_URL
-const apiUrl = "http://localhost:5000/contacts";
+const apiUrl = "https://json-server-vercel-omega-liart.vercel.app/contacts";
 const UserProvider = ({ children }) => {
   const [contacts, setContacts] = useState([]);
   const [editId, setEditId] = useState(null);
